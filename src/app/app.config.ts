@@ -1,9 +1,16 @@
+import { provideRouter, Routes } from '@angular/router';
 import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { LoginComponent } from './pages/login/login.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { NewOrderComponent } from './pages/new-order/new-order.component';
 
-import { routes } from './app.routes';
-import { provideClientHydration } from '@angular/platform-browser';
+const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'new-order', component: NewOrderComponent },
+];
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideClientHydration()]
+  providers: [provideRouter(routes)]
 };
