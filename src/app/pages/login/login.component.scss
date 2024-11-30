@@ -9,6 +9,7 @@
   h2 {
     text-align: center;
     margin-bottom: 20px;
+    color: $primary-color;  
   }
 
   .form-group {
@@ -17,17 +18,19 @@
     label {
       display: block;
       margin-bottom: 5px;
+      font-size: 14px;
     }
 
     input {
       width: 100%;
-      padding: 8px;
+      padding: 10px;
       border: 1px solid #ccc;
       border-radius: 4px;
+      font-size: 14px;
     }
 
     .error {
-      color: red;
+      color: $error-color;
       font-size: 12px;
     }
   }
@@ -35,15 +38,19 @@
   button {
     width: 100%;
     padding: 10px;
-    background-color: #007bff;
+    background-color: $primary-color;
     color: #fff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-size: 16px;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
 
     &:disabled {
       background-color: #ccc;
-      cursor: not-allowed;
     }
   }
 }

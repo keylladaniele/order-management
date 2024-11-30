@@ -1,1 +1,35 @@
-<p>new-order works!</p>
+<div class="order-container">
+  <h2>Criar Novo Pedido</h2>
+
+  <form [formGroup]="orderForm" (ngSubmit)="submitOrder()">
+    <div *ngIf="currentStep === 1">
+      <h3>Selecione os Produtos</h3>
+      <select formControlName="products">
+        <option value="product1">Cuscuz Completo</option>
+        <option value="product2">Bolo Frito</option>
+      </select>
+      <button type="button" (click)="nextStep()">Próximo</button>
+    </div>
+
+    <div *ngIf="currentStep === 2">
+      <h3>Selecione o Cliente</h3>
+      <select formControlName="customer">
+        <option value="customer1">Justine Marshall</option>
+        <option value="customer2">Bairam Frootan</option>
+      </select>
+      <button type="button" (click)="prevStep()">Anterior</button>
+      <button type="button" (click)="nextStep()">Próximo</button>
+    </div>
+
+    <div *ngIf="currentStep === 3">
+      <h3>Detalhes do Pedido</h3>
+      <input type="date" formControlName="orderDate" />
+      <select formControlName="paymentStatus">
+        <option value="paid">Pago</option>
+        <option value="not-paid">Não Pago</option>
+      </select>
+      <button type="button" (click)="prevStep()">Anterior</button>
+      <button type="submit">Finalizar Pedido</button>
+    </div>
+  </form>
+</div>
