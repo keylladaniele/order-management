@@ -2,34 +2,52 @@
   <h2>Criar Novo Pedido</h2>
 
   <form [formGroup]="orderForm" (ngSubmit)="submitOrder()">
-    <div *ngIf="currentStep === 1">
-      <h3>Selecione os Produtos</h3>
-      <select formControlName="products">
-        <option value="product1">Cuscuz Completo</option>
-        <option value="product2">Bolo Frito</option>
-      </select>
-      <button type="button" (click)="nextStep()">Próximo</button>
+    <div *ngIf="currentStep === 1" class="step-container">
+      <h3>Passo 1: Selecione os Produtos</h3>
+      <div class="form-group">
+        <label for="products">Escolha um produto:</label>
+        <select id="products" formControlName="products">
+          <option value="product1">Cuscuz Completo</option>
+          <option value="product2">Bolo Frito</option>
+        </select>
+      </div>
+      <div class="buttons">
+        <button type="button" (click)="nextStep()">Próximo</button>
+      </div>
     </div>
 
-    <div *ngIf="currentStep === 2">
-      <h3>Selecione o Cliente</h3>
-      <select formControlName="customer">
-        <option value="customer1">Justine Marshall</option>
-        <option value="customer2">Bairam Frootan</option>
-      </select>
-      <button type="button" (click)="prevStep()">Anterior</button>
-      <button type="button" (click)="nextStep()">Próximo</button>
+    <div *ngIf="currentStep === 2" class="step-container">
+      <h3>Passo 2: Selecione o Cliente</h3>
+      <div class="form-group">
+        <label for="customer">Escolha um cliente:</label>
+        <select id="customer" formControlName="customer">
+          <option value="customer1">Justine Marshall</option>
+          <option value="customer2">Bairam Frootan</option>
+        </select>
+      </div>
+      <div class="buttons">
+        <button type="button" (click)="prevStep()">Anterior</button>
+        <button type="button" (click)="nextStep()">Próximo</button>
+      </div>
     </div>
 
-    <div *ngIf="currentStep === 3">
-      <h3>Detalhes do Pedido</h3>
-      <input type="date" formControlName="orderDate" />
-      <select formControlName="paymentStatus">
-        <option value="paid">Pago</option>
-        <option value="not-paid">Não Pago</option>
-      </select>
-      <button type="button" (click)="prevStep()">Anterior</button>
-      <button type="submit">Finalizar Pedido</button>
+    <div *ngIf="currentStep === 3" class="step-container">
+      <h3>Passo 3: Detalhes do Pedido</h3>
+      <div class="form-group">
+        <label for="orderDate">Data do Pedido:</label>
+        <input type="date" id="orderDate" formControlName="orderDate" />
+      </div>
+      <div class="form-group">
+        <label for="paymentStatus">Status de Pagamento:</label>
+        <select id="paymentStatus" formControlName="paymentStatus">
+          <option value="paid">Pago</option>
+          <option value="not-paid">Não Pago</option>
+        </select>
+      </div>
+      <div class="buttons">
+        <button type="button" (click)="prevStep()">Anterior</button>
+        <button type="submit">Finalizar Pedido</button>
+      </div>
     </div>
   </form>
 </div>

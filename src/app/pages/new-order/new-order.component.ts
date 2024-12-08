@@ -13,7 +13,7 @@ import { NgIf } from '@angular/common';
 })
 export class NewOrderComponent {
   orderForm: FormGroup;
-  currentStep: number = 1;
+  currentStep: number = 1; 
 
   constructor(
     private fb: FormBuilder,
@@ -29,15 +29,33 @@ export class NewOrderComponent {
   }
 
   nextStep() {
-    if (this.orderForm.valid) {
+    if (this.isStepValid()) {
       this.currentStep++;
     } else {
-      console.log('Por favor, preencha todos os campos.');
+      alert('Por favor, complete todos os campos obrigatórios antes de avançar.');
     }
   }
 
   prevStep() {
-    this.currentStep--;
+    if (this.currentStep > 1) {
+      this.currentStep--;
+    }
+  }
+
+  isStepValid(): boolean {
+    switch (this.currentStep) {
+      case 1:
+        return this.orderForm.get('products')?.value !== null;
+      case 2:
+        return this.orderForm.get('customer')?.value !== null;
+      case 3:
+        return (
+          this.orderForm.get('orderDate')?.value &&
+          this.orderForm.get('paymentStatus')?.value
+        );
+      default:
+        return false;
+    }
   }
 
   submitOrder() {
@@ -45,9 +63,11 @@ export class NewOrderComponent {
       const newOrder = this.orderForm.value;
       this.orderService.createOrder(newOrder);
       console.log('Pedido criado com sucesso!', newOrder);
+      alert('Pedido criado com sucesso!');
       this.router.navigate(['/dashboard']);
     } else {
       console.log('Formulário inválido');
+      alert('Por favor, preencha todos os campos obrigatórios.');
     }
   }
 }

@@ -1,12 +1,40 @@
 <div class="dashboard-container">
-  <h2>Bem-vindo ao Painel de Controle</h2>
+  <aside class="sidebar">
+    <div class="logo">
+      <img src="assets/logo.svg" alt="Logo" />
+    </div>
+    <nav class="menu">
+      <ul>
+        <li (click)="navigateToNewOrder()">
+          <span>Criar Novo Pedido</span>
+        </li>
+        <li (click)="navigateToOrders()">
+          <span>Pedidos</span>
+        </li>
+        <li (click)="navigateToClients()">
+          <span>Clientes</span>
+        </li>
+        <li (click)="navigateToReports()">
+          <span>Relatórios</span>
+        </li>
+      </ul>
+    </nav>
+    <footer class="footer">
+      <p>Desenvolvido por Keylla Daniele © 2024</p>
+    </footer>
+  </aside>
 
-  <div class="actions">
-    <button (click)="navigateToNewOrder()">Criar Novo Pedido</button>
-  </div>
+  <main class="main-content">
+    <header class="header">
+      <h2>Bem-vindo ao Painel de Controle</h2>
+    </header>
 
-  <div class="order-summary">
-    <h3>Resumo dos Pedidos</h3>
-    <p>Em breve, exibiremos o resumo dos pedidos realizados aqui.</p>
-  </div>
+    <div class="actions">
+      <button class="primary" (click)="navigateToNewOrder()">Criar Novo Pedido</button>
+    </div>
+
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
 </div>
